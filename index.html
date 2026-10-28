@@ -26,18 +26,29 @@
     line-height: 1.6;
   }
 
+  .page-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: 48px;
+    padding-right: 48px;
+    width: 100%;
+  }
+
   /* NAV */
   nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 48px;
     border-bottom: 1px solid var(--gray-100);
     position: sticky;
     top: 0;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(8px);
     z-index: 100;
+    padding: 20px 0;
+  }
+
+  nav .page-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .nav-logo {
@@ -57,27 +68,39 @@
   .nav-wordmark .word-mooka { color: var(--blue); }
   .nav-wordmark .word-labs { color: var(--red); }
 
-  .nav-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    text-decoration: none;
+  .nav-tm {
+    font-size: 0.55em;
+    font-weight: 400;
     color: var(--gray-700);
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.15s;
+    vertical-align: super;
+    line-height: 0;
+    position: relative;
+    top: -0.35em;
+    margin-left: 1px;
   }
 
-  .nav-links a:hover { color: var(--black); }
+  .nav-contact {
+    display: inline-block;
+    flex-shrink: 0;
+    padding: 10px 18px;
+    background: var(--red);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 11px;
+    transition: background 0.15s;
+  }
+
+  .nav-contact:hover {
+    background: #c9223f;
+  }
 
   /* HERO */
   .hero {
     background: var(--black);
     color: var(--white);
-    padding: 100px 48px 88px;
+    padding: 100px 0 88px;
     position: relative;
     overflow: hidden;
   }
@@ -86,7 +109,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 56px;
+    gap: 40px;
     position: relative;
     z-index: 1;
   }
@@ -94,8 +117,8 @@
   .hero-image {
     flex-shrink: 0;
     width: 100%;
-    max-width: 420px;
-    aspect-ratio: 4 / 5;
+    max-width: 520px;
+    aspect-ratio: 3 / 2;
     border-radius: 20px;
     overflow: hidden;
     background: var(--gray-100);
@@ -109,8 +132,32 @@
   }
 
   @media (max-width: 900px) {
-    .hero-flex { flex-direction: column; }
-    .hero-image { max-width: 320px; }
+    .hero-flex {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 36px;
+    }
+    .hero-image { max-width: none; width: 100%; }
+    .hero-inner { flex: none; min-width: auto; }
+  }
+
+  @media (min-width: 901px) {
+    .hero-inner {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    .hero h1 em {
+      display: block;
+    }
+  }
+
+  @media (min-width: 901px) and (max-width: 1180px) {
+    .hero-image {
+      max-width: 440px;
+    }
+    .hero h1 {
+      font-size: clamp(38px, 4.5vw, 54px);
+    }
   }
 
   .hero::before {
@@ -123,9 +170,7 @@
     border-radius: 50%;
   }
 
-
   .hero-inner {
-    max-width: 760px;
     position: relative;
     z-index: 1;
   }
@@ -140,7 +185,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(40px, 6vw, 72px);
+    font-size: clamp(40px, 5.25vw, 64px);
     font-weight: 900;
     letter-spacing: -2px;
     line-height: 1.05;
@@ -167,81 +212,55 @@
     line-height: 1.65;
     text-wrap: pretty;
     text-wrap: balance;
+    margin-bottom: 0;
   }
 
   /* FOOTER */
   footer {
     background: var(--black);
     color: rgba(255,255,255,0.5);
-    padding: 36px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
+    padding: 36px 0;
   }
-
-  .footer-logo {
-    font-size: 14px;
-    font-weight: 700;
-    color: rgba(255,255,255,0.8);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-  }
-
-  .footer-links a {
-    color: rgba(255,255,255,0.45);
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.15s;
-  }
-
-  .footer-links a:hover { color: rgba(255,255,255,0.8); }
 
   .footer-copy {
     font-size: 12px;
-    width: 100%;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
   }
 
   @media (max-width: 600px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .hero { padding: 64px 20px; }
-    .hero-image { max-width: 260px; }
-    footer { padding: 28px 20px; }
-    .footer-links { flex-wrap: wrap; gap: 16px; }
+    .page-container { padding-left: 20px; padding-right: 20px; }
+    nav { padding: 16px 0; }
+    .hero { padding: 64px 0; }
+    footer { padding: 28px 0; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">
-    <svg width="66" height="36" viewBox="196 56 253 138" role="img" aria-label="Mooka Labs monogram">
-      <defs>
-        <linearGradient id="navLegM" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0038A8"/><stop offset="50%" stop-color="#743179"/><stop offset="100%" stop-color="#E8294A"/></linearGradient>
-        <linearGradient id="navLegL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0038A8"/><stop offset="30%" stop-color="#0038A8"/><stop offset="70%" stop-color="#743179"/><stop offset="100%" stop-color="#E8294A"/></linearGradient>
-        <linearGradient id="navRibbon" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0038A8"/><stop offset="100%" stop-color="#743179"/></linearGradient>
-      </defs>
-      <path d="M206,60 L230,60 Q236,60 236,66 L236,184 Q236,190 230,190 L206,190 Q200,190 200,184 L200,66 Q200,60 206,60 Z" fill="url(#navLegM)" stroke="url(#navLegM)" stroke-width="1"/>
-      <path d="M306,60 L330,60 Q336,60 336,66 L336,184 Q336,190 330,190 L306,190 Q300,190 300,184 L300,66 Q300,60 306,60 Z" fill="url(#navLegM)" stroke="url(#navLegM)" stroke-width="1"/>
-      <path d="M206,60 L236,60 L268,150 L255,150 L203,65 Q200,60 206,60 Z" fill="url(#navRibbon)" stroke="url(#navRibbon)" stroke-width="1"/>
-      <path d="M330,60 L300,60 L268,150 L281,150 L333,65 Q336,60 330,60 Z" fill="url(#navRibbon)" stroke="url(#navRibbon)" stroke-width="1"/>
-      <path d="M358,60 L382,60 Q388,60 388,66 L388,152 Q388,158 394,158 L439,158 Q445,158 445,164 L445,184 Q445,190 439,190 L358,190 Q352,190 352,184 L352,66 Q352,60 358,60 Z" fill="url(#navLegL)"/>
-    </svg>
-    <span class="nav-wordmark"><span class="word-mooka">Mooka</span> <span class="word-labs">Labs</span></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="/contact">Contact</a></li>
-  </ul>
+  <div class="page-container">
+    <a class="nav-logo" href="/">
+      <svg width="66" height="36" viewBox="196 56 253 138" role="img" aria-label="Mooka Labs monogram">
+        <defs>
+          <linearGradient id="navLegM" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0038A8"/><stop offset="50%" stop-color="#743179"/><stop offset="100%" stop-color="#E8294A"/></linearGradient>
+          <linearGradient id="navLegL" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0038A8"/><stop offset="30%" stop-color="#0038A8"/><stop offset="70%" stop-color="#743179"/><stop offset="100%" stop-color="#E8294A"/></linearGradient>
+          <linearGradient id="navRibbon" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0038A8"/><stop offset="100%" stop-color="#743179"/></linearGradient>
+        </defs>
+        <path d="M206,60 L230,60 Q236,60 236,66 L236,184 Q236,190 230,190 L206,190 Q200,190 200,184 L200,66 Q200,60 206,60 Z" fill="url(#navLegM)" stroke="url(#navLegM)" stroke-width="1"/>
+        <path d="M306,60 L330,60 Q336,60 336,66 L336,184 Q336,190 330,190 L306,190 Q300,190 300,184 L300,66 Q300,60 306,60 Z" fill="url(#navLegM)" stroke="url(#navLegM)" stroke-width="1"/>
+        <path d="M206,60 L236,60 L268,150 L255,150 L203,65 Q200,60 206,60 Z" fill="url(#navRibbon)" stroke="url(#navRibbon)" stroke-width="1"/>
+        <path d="M330,60 L300,60 L268,150 L281,150 L333,65 Q336,60 330,60 Z" fill="url(#navRibbon)" stroke="url(#navRibbon)" stroke-width="1"/>
+        <path d="M358,60 L382,60 Q388,60 388,66 L388,152 Q388,158 394,158 L439,158 Q445,158 445,164 L445,184 Q445,190 439,190 L358,190 Q352,190 352,184 L352,66 Q352,60 358,60 Z" fill="url(#navLegL)"/>
+      </svg>
+      <span class="nav-wordmark"><span class="word-mooka">Mooka</span> <span class="word-labs">Labs</span><sup class="nav-tm">™</sup></span>
+    </a>
+    <a class="nav-contact" href="/contact">Contact us</a>
+  </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-flex">
+  <div class="page-container hero-flex">
     <div class="hero-inner">
       <p class="hero-eyebrow">Mooka Labs</p>
       <h1>Making new things <em>possible.</em></h1>
@@ -249,17 +268,15 @@
       <p>Mooka Labs designs products that open up new ways to live, work, and play.</p>
     </div>
     <div class="hero-image">
-      <img src="images/basil-and-bea.jpg" width="840" height="1050" alt="Basil and Bea, two black curly-haired dogs in lab coats and safety goggles, hold a flask of bubbling blue liquid in a chemistry lab.">
+      <img src="images/hero-wide.jpg" width="1536" height="1024" alt="Basil and Bea, two black curly-haired dogs in lab coats and safety goggles, in a chemistry lab with a flask of bubbling blue liquid.">
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-logo">Mooka Labs LLC</span>
-  <ul class="footer-links">
-    <li><a href="/contact">Contact</a></li>
-  </ul>
-  <p class="footer-copy">© 2026 Mooka Labs LLC</p>
+  <div class="page-container">
+    <p class="footer-copy">© 2026 Mooka Labs LLC</p>
+  </div>
 </footer>
 
 </body>
